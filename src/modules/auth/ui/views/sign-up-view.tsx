@@ -65,7 +65,7 @@ export const SignUpView = () => {
             },
             onError: ({ error }) => {
                 setError(error.message);
-                setPending(false);   // reset loading state on failure
+                setPending(false);
             }
         }
     );

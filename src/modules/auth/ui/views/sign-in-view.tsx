@@ -103,7 +103,7 @@ export const SignInView = () => {
                         <FormLabel>Password</FormLabel>
                         <FormControl>
                           <Input
-                            type='Password'
+                            type='password'
                             placeholder='********'
                             {...field}
                           />
