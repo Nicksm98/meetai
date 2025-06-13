@@ -6,6 +6,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/navigation'
 import { OctagonAlertIcon } from 'lucide-react'
+import { FaGithub, FaGoogle } from 'react-icons/fa'
 import { zodResolver } from '@hookform/resolvers/zod'
 
 import { Input } from '@/components/ui/input'
@@ -28,9 +29,10 @@ const formSchema = z.object({
 })
 
 export const SignInView = () => {
-  const router = useRouter();
-  const [error, setError] = useState<string | null>(null);
-  const [pending, setPending] = useState(false);    
+  const router = useRouter()
+
+  const [pending, setPending] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,26 +43,48 @@ export const SignInView = () => {
   })
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    setError(null);
-    setPending(true);
+    setError(null)
+    setPending(true)
 
     authClient.signIn.email(
-        {
-            email: data.email,
-            password: data.password
+      {
+        email: data.email,
+        password: data.password,
+        callbackURL: '/'
+      },
+      {
+        onSuccess: () => {
+          setPending(false)
+          router.push('/')
         },
-        {
-            onSuccess: () => {
-                setPending(false);
-                router.push('/');
-            },
-            onError: ({ error }) => {
-                setError(error.message);
-                setPending(false);
-            }
+        onError: ({ error }) => {
+          setPending(false)
+          setError(error.message)
         }
-    );
-}
+      }
+    )
+  }
+
+  const onSocial = (provider: 'github' | 'google') => {
+    setError(null)
+    setPending(true)
+
+    authClient.signIn.social(
+      {
+        provider: provider,
+        callbackURL: "/"
+      },
+      {
+        onSuccess: () => {
+          setPending(false)
+        },
+        onError: ({ error }) => {
+          setError(error.message)
+          setPending(false)
+        }
+      }
+    )
+  }
 
   return (
     <div className='flex flex-col gap-6'>
@@ -119,11 +143,7 @@ export const SignInView = () => {
                     <AlertTitle>{error}</AlertTitle>
                   </Alert>
                 )}
-                <Button
-                  disabled={pending}
-                  className='w-full'
-                  type='submit'
-                >
+                <Button disabled={pending} className='w-full' type='submit'>
                   Sign In
                 </Button>
                 <div className='after:border-border relative text-center  text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t'>
@@ -132,15 +152,34 @@ export const SignInView = () => {
                   </span>
                 </div>
                 <div className='grid grid-cols-2 gap-4'>
-                  <Button disabled={pending} variant='outline' type='button' className='w-full'>
-                    Google
+                  <Button
+                    disabled={pending}
+                    onClick={() => onSocial("google")}
+                    variant='outline'
+                    type='button'
+                    className='w-full'
+                  >
+                    <FaGoogle />
                   </Button>
-                  <Button disabled={pending} variant='outline' type='button' className='w-full'>
-                    Github
+                  <Button
+                    disabled={pending}
+                    onClick={() => onSocial("github")}
+                    variant='outline'
+                    type='button'
+                    className='w-full'
+                  >
+                    <FaGithub />
                   </Button>
                 </div>
-                <div className="text-center text-sm">
-                  Don&apos;t have an account? <Link href="/sign-up" className="underline underline-offset-4"> Sign Up</Link>
+                <div className='text-center text-sm'>
+                  Don&apos;t have an account?{' '}
+                  <Link
+                    href='/sign-up'
+                    className='underline underline-offset-4'
+                  >
+                    {' '}
+                    Sign Up
+                  </Link>
                 </div>
               </div>
             </form>
@@ -151,8 +190,9 @@ export const SignInView = () => {
           </div>
         </CardContent>
       </Card>
-      <div className="text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4">
-                By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>
+      <div className='text-muted-foreground *:[a]:hover:text-primary text-center text-xs text-balance *:[a]:underline *:[a]:underline-offset-4'>
+        By clicking continue, you agree to our <a href='#'>Terms of Service</a>{' '}
+        and <a href='#'>Privacy Policy</a>
       </div>
     </div>
   )
