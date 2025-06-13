@@ -1,6 +1,10 @@
-import { CommandItem, CommandList } from "cmdk";
 import { Dispatch, SetStateAction } from "react";
-import { CommandDialog, CommandInput } from "@/components/ui/command";
+import {
+    CommandDialog, 
+    CommandInput, 
+    CommandItem, 
+    CommandList 
+} from "@/components/ui/command";
 
 interface Props {
     open: boolean;
