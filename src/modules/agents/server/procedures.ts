@@ -1,4 +1,4 @@
-import { db }from "@/db"
+import { db } from "@/db"
 import { agents } from "@/db/schema";
 import { createTRPCRouter, baseProcedure } from "@/trpc/init";
 
