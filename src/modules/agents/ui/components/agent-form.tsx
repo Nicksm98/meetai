@@ -61,7 +61,7 @@ export const AgentForm = ({
   const form = useForm<z.infer<typeof agentsInsertSchema>>({
     resolver: zodResolver(agentsInsertSchema),
     defaultValues: {
-      name: initialValues?.instructions ?? '',
+      name: initialValues?.name ?? '',
       instructions: initialValues?.instructions ?? ''
     }
   })

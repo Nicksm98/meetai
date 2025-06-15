@@ -1,4 +1,4 @@
-import { inferRouterOutputs } from "@/modules/agents/server/procedures";
+import { inferRouterOutputs } from "@trpc/server";
 
 import { AppRouter } from "@/trpc/routers/_app";
 

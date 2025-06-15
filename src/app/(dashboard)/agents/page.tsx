@@ -31,7 +31,7 @@ const Page = async () => {
     <AgentsListHeader />
     <HydrationBoundary state={dehydrate(queryClient)}>
       <Suspense fallback={<AgentsViewLoading />}>
-      <ErrorBoundary fallback={<AgentsViewError />}>
+      <ErrorBoundary FallbackComponent={AgentsViewError}>
         <AgentsView />
       </ErrorBoundary>
       </Suspense>
