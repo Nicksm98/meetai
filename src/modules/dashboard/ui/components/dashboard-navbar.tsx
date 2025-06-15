@@ -1,10 +1,11 @@
 'use client'
 
-import { Button } from '@/components/ui/button'
-import { useSidebar } from '@/components/ui/sidebar'
+import { useState, useEffect } from 'react'
 import { DashboardCommand } from './dashboard-command'
 import { PanelLeftCloseIcon, PanelLeftIcon, SearchIcon } from 'lucide-react'
-import { useState, useEffect } from 'react'
+
+import { Button } from '@/components/ui/button'
+import { useSidebar } from '@/components/ui/sidebar'
 
 export const DashboardNavbar = () => {
   const { state, toggleSidebar, isMobile } = useSidebar()
@@ -18,8 +19,8 @@ export const DashboardNavbar = () => {
       }
     }
 
-    document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down)
+    document.addEventListener('keydown', down)
+    return () => document.removeEventListener('keydown', down)
   }, [])
 
   return (

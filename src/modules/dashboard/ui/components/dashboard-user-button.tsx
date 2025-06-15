@@ -1,10 +1,11 @@
 import { useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth-client'
-import { Button } from '@/components/ui/button'
 import { useIsMobile } from '@/hooks/use-mobile'
+import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from 'lucide-react'
+
+import { Button } from '@/components/ui/button'
 import { Avatar, AvatarImage } from '@/components/ui/avatar'
 import { GeneratedAvatar } from '@/components/generated-avatar'
-import { ChevronDownIcon, CreditCardIcon, LogOutIcon } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuItem,
@@ -64,26 +65,20 @@ export const DashboardUserButton = () => {
           <ChevronDownIcon className='size-4 shrink-0' />
         </DrawerTrigger>
         <DrawerContent>
-            <DrawerHeader>
-                <DrawerTitle>{data.user.name}</DrawerTitle>
-                <DrawerDescription>{data.user.email}</DrawerDescription>
-            </DrawerHeader>
-            <DrawerFooter>
-                <Button
-                  variant="outline"
-                  onClick={() => {}}
-                >
-                  <CreditCardIcon className="size-4 text-black" />
-                  Billing
-                </Button>
-                <Button
-                  variant="outline"
-                  onClick={onLogout}
-                >
-                  <LogOutIcon className="size-4 text-black" />
-                  Logout
-                </Button>
-            </DrawerFooter>
+          <DrawerHeader>
+            <DrawerTitle>{data.user.name}</DrawerTitle>
+            <DrawerDescription>{data.user.email}</DrawerDescription>
+          </DrawerHeader>
+          <DrawerFooter>
+            <Button variant='outline' onClick={() => {}}>
+              <CreditCardIcon className='size-4 text-black' />
+              Billing
+            </Button>
+            <Button variant='outline' onClick={onLogout}>
+              <LogOutIcon className='size-4 text-black' />
+              Logout
+            </Button>
+          </DrawerFooter>
         </DrawerContent>
       </Drawer>
     )
