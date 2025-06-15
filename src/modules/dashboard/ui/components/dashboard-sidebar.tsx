@@ -4,10 +4,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
-import { Separator } from '@/components/ui/separator'
 import { BotIcon, StarIcon, VideoIcon } from 'lucide-react'
 import { DashboardUserButton } from './dashboard-user-button'
 
+import { Separator } from '@/components/ui/separator'
 import {
   Sidebar,
   SidebarContent,
@@ -42,7 +42,7 @@ const secondSection = [
 ]
 
 export const DashboardSidebar = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <Sidebar>
@@ -65,7 +65,8 @@ export const DashboardSidebar = () => {
                     asChild
                     className={cn(
                       'h-10 hover:bg-linear-to-r/oklch border border-transparent hover:border-[#5D6B68]/10 from-sidebar-accent from-5% via-30% via-sidebar/50 to-sidebar/50',
-                      pathname === item.href && 'bg-linear-to-r/oklch border-[#5D6B68]/10'
+                      pathname === item.href &&
+                        'bg-linear-to-r/oklch border-[#5D6B68]/10'
                     )}
                     isActive={pathname === item.href}
                   >
@@ -90,7 +91,8 @@ export const DashboardSidebar = () => {
                     asChild
                     className={cn(
                       'h-10 hover:bg-linear-to-r/oklch border border-transparent hover:border-[#5D6B68]/10 from-sidebar-accent from-5% via-30% via-sidebar/50 to-sidebar/50',
-                      pathname === item.href && 'bg-linear-to-r/oklch border-[#5D6B68]/10'
+                      pathname === item.href &&
+                        'bg-linear-to-r/oklch border-[#5D6B68]/10'
                     )}
                     isActive={pathname === item.href}
                   >
