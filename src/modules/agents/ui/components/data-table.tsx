@@ -32,7 +32,7 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className="rounded-lg border bg-background overdlow-hidden">
+    <div className="rounded-lg border bg-background overflow-hidden">
       <Table>
         <TableBody>
           {table.getRowModel().rows?.length ? (
