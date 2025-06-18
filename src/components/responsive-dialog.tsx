@@ -1,6 +1,6 @@
-'use client'
+"use client"
 
-import { useIsMobile } from '@/hooks/use-mobile'
+import { useIsMobile } from "@/hooks/use-mobile"
 
 import {
   Dialog,
@@ -8,14 +8,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription
-} from '@/components/ui/dialog'
+} from "@/components/ui/dialog"
 import {
   Drawer,
   DrawerContent,
   DrawerHeader,
   DrawerTitle,
   DrawerDescription
-} from '@/components/ui/drawer'
+} from "@/components/ui/drawer"
 
 interface ResponsiveDialogProps {
   title: string
@@ -42,7 +42,7 @@ export const ResponsiveDialog = ({
             <DrawerTitle>{title}</DrawerTitle>
             <DrawerDescription>{description}</DrawerDescription>
           </DrawerHeader>
-          <div className='p-4'>{children}</div>
+          <div className="p-4">{children}</div>
         </DrawerContent>
       </Drawer>
     )
@@ -54,8 +54,8 @@ export const ResponsiveDialog = ({
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
           <DialogDescription>{description}</DialogDescription>
-        </DialogHeader>{' '}
-        <div className='p-4'>{children}</div>
+        </DialogHeader>{" "}
+        <div className="p-4">{children}</div>
       </DialogContent>
     </Dialog>
   )

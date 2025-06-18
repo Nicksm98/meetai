@@ -1,12 +1,12 @@
-import { cache } from 'react';
-import { auth } from '@/lib/auth';
-import { headers } from 'next/headers';
-import { initTRPC, TRPCError } from '@trpc/server';
+import { cache } from "react";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { initTRPC, TRPCError } from "@trpc/server";
 export const createTRPCContext = cache(async () => {
   /**
    * @see: https://trpc.io/docs/server/context
    */
-  return { userId: 'user_123' };
+  return { userId: "user_123" };
 });
 // Avoid exporting the entire t-object
 // since it's not very description.

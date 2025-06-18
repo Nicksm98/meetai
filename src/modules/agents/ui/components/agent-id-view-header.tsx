@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ChevronRightIcon, TrashIcon, PencilIcon, MoreVerticalIcon } from 'lucide-react'
+import { ChevronRightIcon, TrashIcon, PencilIcon, MoreVerticalIcon } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import {
@@ -14,7 +14,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator
-} from '@/components/ui/breadcrumb'
+} from "@/components/ui/breadcrumb"
 
 interface Props {
   agentId: string
@@ -30,7 +30,7 @@ export const AgentIdViewHeader = ({
   onRemove
 }: Props) => {
   return (
-    <div className='flex items-center justify-between'>
+    <div className="flex items-center justify-between">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

@@ -1,16 +1,16 @@
-import { z } from 'zod'
-import { toast } from 'sonner'
-import { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { z } from "zod"
+import { toast } from "sonner"
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
-import { useTRPC } from '@/trpc/client'
+import { useTRPC } from "@/trpc/client"
 
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { CommandSelect } from '@/components/command-select'
-import { GeneratedAvatar } from '@/components/generated-avatar'
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { CommandSelect } from "@/components/command-select"
+import { GeneratedAvatar } from "@/components/generated-avatar"
 // import { Textarea } from "@/components/ui/textarea"
 import {
   Form,
@@ -20,12 +20,12 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form'
+} from "@/components/ui/form"
 
-import { MeetingGetOne } from '../../types'
-import { meetingsInsertSchema } from '../../schemas'
+import { MeetingGetOne } from "../../types"
+import { meetingsInsertSchema } from "../../schemas"
 
-import { NewAgentDialog } from '@/modules/agents/ui/components/new-agent-dialog'
+import { NewAgentDialog } from "@/modules/agents/ui/components/new-agent-dialog"
 
 interface MeetingFormProps {
   onSuccess?: (id?: string) => void
@@ -42,7 +42,7 @@ export const MeetingForm = ({
   const queryClient = useQueryClient()
 
   const [openNewAgentDialog, setOpenNewAgentDialog] = useState(false)
-  const [agentSearch, setAgentSearch] = useState('')
+  const [agentSearch, setAgentSearch] = useState("")
 
   const agents = useQuery(
     trpc.agents.getMany.queryOptions({
@@ -94,8 +94,8 @@ export const MeetingForm = ({
   const form = useForm<z.infer<typeof meetingsInsertSchema>>({
     resolver: zodResolver(meetingsInsertSchema),
     defaultValues: {
-      name: initialValues?.name ?? '',
-      agentId: initialValues?.agentId ?? ''
+      name: initialValues?.name ?? "",
+      agentId: initialValues?.agentId ?? ""
     }
   })
 
@@ -114,22 +114,22 @@ export const MeetingForm = ({
     <>
     <NewAgentDialog open={openNewAgentDialog} onOpenChange={setOpenNewAgentDialog} />
       <Form {...form}>
-        <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
+        <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
           <FormField
-            name='name'
+            name="name"
             control={form.control}
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Name</FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder='e.g. Python 101' />
+                  <Input {...field} placeholder="e.g. Python 101" />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <FormField
-            name='agentId'
+            name="agentId"
             control={form.control}
             render={({ field }) => (
               <FormItem>
@@ -140,11 +140,11 @@ export const MeetingForm = ({
                       id: agent.id,
                       value: agent.id,
                       children: (
-                        <div className='flex items-center gap-x-2'>
+                        <div className="flex items-center gap-x-2">
                           <GeneratedAvatar
                             seed={agent.name}
-                            variant='botttsNeutral'
-                            className='border size-6'
+                            variant="botttsNeutral"
+                            className="border size-6"
                           />
                           <span>{agent.name}</span>
                         </div>
@@ -153,14 +153,14 @@ export const MeetingForm = ({
                     onSelect={field.onChange}
                     onSearch={setAgentSearch}
                     value={field.value}
-                    placeholder='Select an Agent'
+                    placeholder="Select an Agent"
                   />
                 </FormControl>
                 <FormDescription>
-                  Not found what you&apos;re looking for?{' '}
+                  Not found what you&apos;re looking for?{" "}
                   <button
-                    type='button'
-                    className='text-primary hover:underline'
+                    type="button"
+                    className="text-primary hover:underline"
                     onClick={() => setOpenNewAgentDialog(true)}
                   >
                     Create New Agent
@@ -170,19 +170,19 @@ export const MeetingForm = ({
               </FormItem>
             )}
           />
-          <div className='flex justify-between gap-x-2'>
+          <div className="flex justify-between gap-x-2">
             {onCancel && (
               <Button
-                variant='ghost'
+                variant="ghost"
                 disabled={isPending}
-                type='button'
+                type="button"
                 onClick={() => onCancel()}
               >
                 Cancel
               </Button>
             )}
-            <Button disabled={isPending} type='submit'>
-              {isEdit ? 'Update' : 'Create'}
+            <Button disabled={isPending} type="submit">
+              {isEdit ? "Update" : "Create"}
             </Button>
           </div>
         </form>

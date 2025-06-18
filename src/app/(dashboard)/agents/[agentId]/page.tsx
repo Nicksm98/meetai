@@ -1,14 +1,14 @@
-import { Suspense } from 'react'
-import { ErrorBoundary } from 'react-error-boundary'
-import { dehydrate, HydrationBoundary } from '@tanstack/react-query'
+import { Suspense } from "react"
+import { ErrorBoundary } from "react-error-boundary"
+import { dehydrate, HydrationBoundary } from "@tanstack/react-query"
 
-import { getQueryClient, trpc } from '@/trpc/server'
+import { getQueryClient, trpc } from "@/trpc/server"
 
 import {
   AgentIdView,
   AgentsIdViewError,
   AgentsIdViewLoading
-} from '@/modules/agents/ui/views/agent-id-views'
+} from "@/modules/agents/ui/views/agent-id-views"
 
 interface Props {
   params: Promise<{ agentId: string }>

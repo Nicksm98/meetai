@@ -1,20 +1,20 @@
-import { Suspense } from 'react'
-import { headers } from 'next/headers'
-import type { SearchParams } from 'nuqs' 
-import { redirect } from 'next/navigation'
-import { ErrorBoundary } from 'react-error-boundary'
-import { HydrationBoundary, dehydrate } from '@tanstack/react-query'
+import { Suspense } from "react"
+import { headers } from "next/headers"
+import type { SearchParams } from "nuqs" 
+import { redirect } from "next/navigation"
+import { ErrorBoundary } from "react-error-boundary"
+import { HydrationBoundary, dehydrate } from "@tanstack/react-query"
 
-import { auth } from '@/lib/auth'
-import { getQueryClient, trpc } from '@/trpc/server'
+import { auth } from "@/lib/auth"
+import { getQueryClient, trpc } from "@/trpc/server"
 
-import { loadSearchParams } from '@/modules/agents/params'
-import { AgentsListHeader } from '@/modules/agents/ui/components/agents-list-header'
+import { loadSearchParams } from "@/modules/agents/params"
+import { AgentsListHeader } from "@/modules/agents/ui/components/agents-list-header"
 import { 
   AgentsView, 
   AgentsViewError, 
   AgentsViewLoading 
-} from '@/modules/agents/ui/views/agents-view'
+} from "@/modules/agents/ui/views/agents-view"
 
 interface Props {
   searchParams: Promise<SearchParams>;
@@ -28,7 +28,7 @@ const Page = async ({ searchParams }: Props) => {
     })
   
     if (!session) {
-      redirect('/sign-in')
+      redirect("/sign-in")
     }
 
   const queryClient = getQueryClient()
