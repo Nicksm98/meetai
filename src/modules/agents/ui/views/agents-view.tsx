@@ -1,17 +1,16 @@
 "use client"
 
-import { useTRPC } from "@/trpc/client"
 import { useRouter } from "next/navigation"
-
 import { useSuspenseQuery } from "@tanstack/react-query"
 
-import { columns } from "../components/columns"
-import { DataTable } from "../components/data-table"
+import { useTRPC } from "@/trpc/client"
+import { DataTable } from "@/components/data-table"
 import { ErrorState } from "@/components/error-state"
 import { EmptyState } from "@/components/empty-state"
 import { LoadingState } from "@/components/loading-state"
-import { DataPagination } from "../components/data-pagination"
 
+import { columns } from "../components/columns"
+import { DataPagination } from "../components/data-pagination"
 import { useAgentsFilters } from "../../hooks/use-agents-filters"
 
 
@@ -37,7 +36,7 @@ export const AgentsView = () => {
       {data.items.length === 0 && (
         <EmptyState
           title="Create your first Agent"
-          description="Crteate an agent to join your meetings. Each one will follow your instructions and can interact with particpants during the call."
+          description="Create an agent to join your meetings. Each one will follow your instructions and can interact with particpants during the call."
         />
       )}
     </div>
