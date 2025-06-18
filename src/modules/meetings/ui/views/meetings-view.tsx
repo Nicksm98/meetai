@@ -1,7 +1,7 @@
 'use client'
 
 import { useTRPC } from '@/trpc/client'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { useSuspenseQuery } from '@tanstack/react-query'
 
 import { DataTable } from '@/components/data-table'

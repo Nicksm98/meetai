@@ -32,7 +32,7 @@ export const AgentIdFilter = () => {
                     <GeneratedAvatar 
                       seed={agent.name}
                       variant="botttsNeutral"
-                      className="sinze-4"
+                      className="size-4"
                     />
                     {agent.name}
                 </div>
