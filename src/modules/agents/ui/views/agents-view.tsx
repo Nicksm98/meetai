@@ -1,18 +1,18 @@
-'use client'
+"use client"
 
-import { useTRPC } from '@/trpc/client'
-import { useRouter } from 'next/navigation'
+import { useTRPC } from "@/trpc/client"
+import { useRouter } from "next/navigation"
 
-import { useSuspenseQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from "@tanstack/react-query"
 
-import { columns } from '../components/columns'
-import { DataTable } from '../components/data-table'
-import { ErrorState } from '@/components/error-state'
-import { EmptyState } from '@/components/empty-state'
-import { LoadingState } from '@/components/loading-state'
-import { DataPagination } from '../components/data-pagination'
+import { columns } from "../components/columns"
+import { DataTable } from "../components/data-table"
+import { ErrorState } from "@/components/error-state"
+import { EmptyState } from "@/components/empty-state"
+import { LoadingState } from "@/components/loading-state"
+import { DataPagination } from "../components/data-pagination"
 
-import { useAgentsFilters } from '../../hooks/use-agents-filters'
+import { useAgentsFilters } from "../../hooks/use-agents-filters"
 
 
 export const AgentsView = () => {
@@ -23,7 +23,7 @@ export const AgentsView = () => {
   const { data } = useSuspenseQuery(trpc.agents.getMany.queryOptions({}))
 
   return (
-    <div className='flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4'>
+    <div className="flex-1 pb-4 px-4 md:px-8 flex flex-col gap-y-4">
       <DataTable
         data={data.items}
         columns={columns}
@@ -47,8 +47,8 @@ export const AgentsView = () => {
 export const AgentsViewLoading = () => {
   return (
     <LoadingState
-      title='Loading Agents'
-      description='This may take a few seconds'
+      title="Loading Agents"
+      description="This may take a few seconds"
     />
   )
 }
@@ -56,8 +56,8 @@ export const AgentsViewLoading = () => {
 export const AgentsViewError = () => {
   return (
     <ErrorState
-      title='Failed to Load Agents'
-      description='Please Try Again Later'
+      title="Failed to Load Agents"
+      description="Please Try Again Later"
     />
   )
 }

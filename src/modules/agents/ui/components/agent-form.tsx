@@ -1,15 +1,15 @@
-import { z } from 'zod'
-import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { z } from "zod"
+import { useForm } from "react-hook-form"
+import { useRouter } from "next/navigation"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 
-import { useTRPC } from '@/trpc/client'
+import { useTRPC } from "@/trpc/client"
 
-import { Input } from '@/components/ui/input'
-import { Button } from '@/components/ui/button'
-import { Textarea } from '@/components/ui/textarea'
-import { GeneratedAvatar } from '@/components/generated-avatar'
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Textarea } from "@/components/ui/textarea"
+import { GeneratedAvatar } from "@/components/generated-avatar"
 import {
   Form,
   FormControl,
@@ -17,11 +17,11 @@ import {
   FormItem,
   FormLabel,
   FormMessage
-} from '@/components/ui/form'
+} from "@/components/ui/form"
 
-import { AgentGetOne } from '../../types'
-import { agentsInsertSchema } from '../../schemas'
-import { toast } from 'sonner'
+import { AgentGetOne } from "../../types"
+import { agentsInsertSchema } from "../../schemas"
+import { toast } from "sonner"
 
 interface AgentFormProps {
   onSuccess?: () => void
@@ -49,7 +49,7 @@ export const AgentForm = ({
       onError: (error) => {
         toast.error(error.message)
 
-        // TODO: check if error code is "forbidden", redirect to 'upgrade'
+        // TODO: check if error code is "forbidden", redirect to "upgrade"
       }
     })
   )
@@ -69,7 +69,7 @@ export const AgentForm = ({
       onError: (error) => {
         toast.error(error.message)
 
-        // TODO: check if error code is "forbidden", redirect to 'upgrade'
+        // TODO: check if error code is "forbidden", redirect to "upgrade"
       }
     })
   )
@@ -77,8 +77,8 @@ export const AgentForm = ({
   const form = useForm<z.infer<typeof agentsInsertSchema>>({
     resolver: zodResolver(agentsInsertSchema),
     defaultValues: {
-      name: initialValues?.name ?? '',
-      instructions: initialValues?.instructions ?? ''
+      name: initialValues?.name ?? "",
+      instructions: initialValues?.instructions ?? ""
     }
   })
 
@@ -95,27 +95,27 @@ export const AgentForm = ({
 
   return (
     <Form {...form}>
-      <form className='space-y-4' onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="space-y-4" onSubmit={form.handleSubmit(onSubmit)}>
         <GeneratedAvatar
-          seed={form.watch('name')}
-          variant='botttsNeutral'
-          className='border size-16'
+          seed={form.watch("name")}
+          variant="botttsNeutral"
+          className="border size-16"
         />
         <FormField
-          name='name'
+          name="name"
           control={form.control}
           render={({ field }) => (
             <FormItem>
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input {...field} placeholder='e.g. Python Tutor' />
+                <Input {...field} placeholder="e.g. Python Tutor" />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
         <FormField
-          name='instructions'
+          name="instructions"
           control={form.control}
           render={({ field }) => (
             <FormItem>
@@ -123,26 +123,26 @@ export const AgentForm = ({
               <FormControl>
                 <Textarea
                   {...field}
-                  placeholder='You are a helpful assistant that can find errors within my code and answer questions I may have with any projects.'
+                  placeholder="You are a helpful assistant that can find errors within my code and answer questions I may have with any projects."
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        <div className='flex justify-between gap-x-2'>
+        <div className="flex justify-between gap-x-2">
           {onCancel && (
             <Button
-              variant='ghost'
+              variant="ghost"
               disabled={isPending}
-              type='button'
+              type="button"
               onClick={() => onCancel()}
             >
               Cancel
             </Button>
           )}
-          <Button disabled={isPending} type='submit'>
-            {isEdit ? 'Update' : 'Create'}
+          <Button disabled={isPending} type="submit">
+            {isEdit ? "Update" : "Create"}
           </Button>
         </div>
       </form>
