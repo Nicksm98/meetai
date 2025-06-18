@@ -12,7 +12,7 @@ import {
   MeetingsView, 
   MeetingsViewError, 
   MeetingsViewLoading 
-}   from "@/modules/meetings/ui/views/meeting-view"
+}   from "@/modules/meetings/ui/views/meetings-view"
 
 const Page = async () => {
   const session = await auth.api.getSession({
