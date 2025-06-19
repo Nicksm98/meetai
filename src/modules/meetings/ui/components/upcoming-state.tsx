@@ -22,7 +22,7 @@ export const UpcomingState = ({
         title="Not started yet"
         description="Once you start this meeting, a summary will appear here"
       />
-      <div className="flex flex-col-reverse lg:flex-row lg:justify center items-center gap-2-w-full">
+      <div className="flex flex-col-reverse lg:flex-row lg:justify-center items-center gap-2-w-full">
         <Button 
           variant="secondary"
           className="w-full lg:w-auto"
@@ -36,8 +36,8 @@ export const UpcomingState = ({
           <Link href={`/call/${123}`}>
           <VideoIcon />
           Start Meeting
-        </Button>
           </Link>
+        </Button>
       </div>
     </div>
   )
