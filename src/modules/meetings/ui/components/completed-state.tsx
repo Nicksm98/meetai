@@ -25,7 +25,7 @@ export const CompletedState = ({ data }: Props) => {
   return (
     <div className='flex flex-col gap-y-4'>
       <Tabs defaultValue='summary'>
-        <div className='bg0white rounded-lg border px-3'>
+        <div className='bg-white rounded-lg border px-3'>
           <ScrollArea>
             <TabsList className='p-0 bg-background justify-start rounded-none h-13'>
               <TabsTrigger
