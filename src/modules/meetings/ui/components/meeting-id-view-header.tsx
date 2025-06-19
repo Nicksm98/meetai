@@ -18,7 +18,7 @@ import {
 
 interface Props {
   meetingId: string
-  meetingName: String
+  meetingName: string
   onEdit: () => void
   onRemove: () => void
 }
