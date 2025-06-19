@@ -4,13 +4,6 @@ import { Button } from '@/components/ui/button'
 
 
 export const CallEnded = () => {
-  const { useCameraState, useMicrophoneState } = useCallStateHooks()
-
-  const { hasBrowserPermission: hasMicPermission } = useMicrophoneState()
-  const { hasBrowserPermission: hasCameraPermission } = useCameraState()
-
-  const hasBrowserMediaPermission = hasCameraPermission && hasMicPermission
-
   return (
     <div className='flex flex-col items-center justify-center h-full bg-radial from-sidebar-accent to-sidebar'>
       <div className='py-4 px-4 flex flex-1 items-center justify-center'>
