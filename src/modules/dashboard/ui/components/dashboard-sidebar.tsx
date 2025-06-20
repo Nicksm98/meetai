@@ -5,20 +5,22 @@ import Image from "next/image"
 import { cn } from "@/lib/utils"
 import { usePathname } from "next/navigation"
 import { BotIcon, StarIcon, VideoIcon } from "lucide-react"
-import { DashboardUserButton } from "./dashboard-user-button"
 
 import { Separator } from "@/components/ui/separator"
 import {
   Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarHeader,
   SidebarMenu,
+  SidebarGroup,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarContent,
+  SidebarMenuItem,
   SidebarMenuButton,
-  SidebarMenuItem
+  SidebarGroupContent,
 } from "@/components/ui/sidebar"
+
+import { DashboardTrial } from "./dashboard-trial";
+import { DashboardUserButton } from "./dashboard-user-button"
 
 const firstSection = [
   {
@@ -110,6 +112,7 @@ export const DashboardSidebar = () => {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="text-white">
+        <DashboardTrial />
         <DashboardUserButton />
       </SidebarFooter>
     </Sidebar>
