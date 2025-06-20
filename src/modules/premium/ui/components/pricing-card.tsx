@@ -1,53 +1,53 @@
-import { CircleCheckIcon } from 'lucide-react'
-import { cva, type VariantProps } from 'class-variance-authority'
+import { CircleCheckIcon } from "lucide-react"
+import { cva, type VariantProps } from "class-variance-authority"
 
-import { cn } from '@/lib/utils'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+import { cn } from "@/lib/utils"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 
-const pricingCardVariants = cva('rounded-lg p-4 py-6 w-full', {
+const pricingCardVariants = cva("rounded-lg p-4 py-6 w-full", {
   variants: {
     variant: {
-      default: 'bg-white text-black',
-      highlighted: 'bg-linear-to-br from-[#093C23] to-[#051B16] text-white'
+      default: "bg-white text-black",
+      highlighted: "bg-linear-to-br from-[#093C23] to-[#051B16] text-white"
     }
   },
   defaultVariants: {
-    variant: 'default'
+    variant: "default"
   }
 })
 
-const pricingCardIconVariants = cva('size-5', {
+const pricingCardIconVariants = cva("size-5", {
   variants: {
     variant: {
-      default: 'fill-primary text-white',
-      highlighted: 'fill-white text-black'
+      default: "fill-primary text-white",
+      highlighted: "fill-white text-black"
     }
   },
   defaultVariants: {
-    variant: 'default'
+    variant: "default"
   }
 })
 
-const pricingCardSecondaryTextVariants = cva('text-neutral-700', {
+const pricingCardSecondaryTextVariants = cva("text-neutral-700", {
   variants: {
     variant: {
-      default: 'text-neutral-700',
-      highlighted: 'text-neutral-300'
+      default: "text-neutral-700",
+      highlighted: "text-neutral-300"
     }
   }
 })
 
-const pricingCardBadgeVariants = cva('text-black text-xs font-normal p-1', {
+const pricingCardBadgeVariants = cva("text-black text-xs font-normal p-1", {
   variants: {
     variant: {
-      default: 'bg-primary/20',
-      highlighted: 'bg-[#F5B797]'
+      default: "bg-primary/20",
+      highlighted: "bg-[#F5B797]"
     }
   },
   defaultVariants: {
-    variant: 'default'
+    variant: "default"
   }
 })
 
@@ -76,11 +76,11 @@ export const PricingCard = ({
   onClick
 }: Props) => {
   return (
-    <div className={cn(pricingCardVariants({ variant }), className, 'border')}>
-      <div className='flex items-end gap-x-4 justify-between'>
-        <div className='flex flex-col gap-y-2'>
-          <div className='flex items-center gap-x-2'>
-            <h6 className=' font-medium text-xl'>{title}</h6>
+    <div className={cn(pricingCardVariants({ variant }), className, "border")}>
+      <div className="flex items-end gap-x-4 justify-between">
+        <div className="flex flex-col gap-y-2">
+          <div className="flex items-center gap-x-2">
+            <h6 className=" font-medium text-xl">{title}</h6>
             {badge ? (
               <Badge className={cn(pricingCardBadgeVariants({ variant }))}>
                 {badge}
@@ -89,18 +89,18 @@ export const PricingCard = ({
           </div>
           <p
             className={cn(
-              'text.xs',
+              "text-xs",
               pricingCardSecondaryTextVariants({ variant })
             )}
           >
             {description}
           </p>
         </div>
-        <div className='flex items-end shrink-0 gap-x-0.5'>
-          <h4 className=' text-3xl font-medium'>
-            {Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: 'USD',
+        <div className="flex items-end shrink-0 gap-x-0.5">
+          <h4 className=" text-3xl font-medium">
+            {Intl.NumberFormat("en-US", {
+              style: "currency",
+              currency: "USD",
               minimumFractionDigits: 0
             }).format(price)}
           </h4>
@@ -110,7 +110,7 @@ export const PricingCard = ({
         </div>
       </div>
       <div className="py-6">
-        <Separator className='opacity-10 text-[#5D6B68]' />
+        <Separator className="opacity-10 text-[#5D6B68]" />
       </div>
       <Button
         className="w-full"
