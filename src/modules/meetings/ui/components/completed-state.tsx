@@ -63,10 +63,10 @@ export const CompletedState = ({ data }: Props) => {
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         </div>
-        <TabsContent value="transcript" >
+        <TabsContent value="chat" >
             <ChatProvider meetingId={data.id} meetingName={data.name} />
         </TabsContent>
-        <TabsContent value="chat" >
+        <TabsContent value="transcript" >
             <Transcript meetingId={data.id} />
         </TabsContent>
         <TabsContent value="recording">
