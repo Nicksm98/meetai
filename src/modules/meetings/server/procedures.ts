@@ -8,7 +8,7 @@ import { streamChat } from "@/lib/stream-chat";
 import { streamVideo } from "@/lib/stream-video";
 import { generateAvatarUri } from "@/lib/avatar";
 import { agents, meetings, user } from "@/db/schema";
-import { createTRPCRouter, protectedProcedure } from "@/trpc/init";
+import { createTRPCRouter, premiumProcedure, protectedProcedure } from "@/trpc/init";
 import { DEFAULT_PAGE, DEFAULT_PAGE_SIZE, MAX_PAGE_SIZE, MIN_PAGE_SIZE } from "@/constants";
 
 import { MeetingStatus, StreamTranscriptItem } from "../types";
@@ -183,7 +183,7 @@ export const meetingsRouter = createTRPCRouter({
          
          return updatedMeeting;
      }),
-  create: protectedProcedure
+  create: premiumProcedure("meetings")
       .input(meetingsInsertSchema)
       .mutation(async ({ input, ctx }) => {
         const [createdMeeting] = await db
