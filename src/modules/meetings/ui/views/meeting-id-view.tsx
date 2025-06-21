@@ -42,7 +42,6 @@ export const MeetingIdView = ({ meetingId }: Props) => {
         trpc.meetings.remove.mutationOptions({
             onSuccess: () => {
                 queryClient.invalidateQueries(trpc.meetings.getMany.queryOptions({}))
-                // TODO: Invalidate free tier usage
                 router.push("/meetings")
             },
         }),
@@ -81,11 +80,7 @@ export const MeetingIdView = ({ meetingId }: Props) => {
                 {isProcessing && <ProcessingState />}
                 {isCompleted && <CompletedState data={data} />}
                 {isActive && <ActiveState meetingId={meetingId} />}
-                {isUpcoming && ( <UpcomingState
-                  meetingId={meetingId}
-                  onCancelMeeting={() => {}}
-                  isCancelling={false}
-                />)}
+                {isUpcoming && ( <UpcomingState meetingId={meetingId} />)}
             </div>
         </>
     );

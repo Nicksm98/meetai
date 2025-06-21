@@ -18,7 +18,7 @@ import {
 
 interface Props {
   agentId: string
-  agentName: String
+  agentName: string
   onEdit: () => void
   onRemove: () => void
 }
