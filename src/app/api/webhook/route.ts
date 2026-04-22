@@ -15,12 +15,13 @@ import { db } from '@/db'
 import { inngest } from '@/inngest/client'
 import { streamChat } from '@/lib/stream-chat'
 import { agents, meetings } from '@/db/schema'
-import { streamVideo } from '@/lib/stream-video'
+import { getStreamVideo } from '@/lib/stream-video'
 import { generateAvatarUri } from '@/lib/avatar'
 
 const openaiClient = new OpenAI({ apiKey: process.env.OPENAI_API_KEY! })
 
 function verifySignatureWithSDK (body: string, signature: string): boolean {
+  const streamVideo = getStreamVideo()
   return streamVideo.verifyWebhook(body, signature)
 }
 
@@ -51,6 +52,7 @@ export async function POST (req: NextRequest) {
   const eventType = (payload as Record<string, unknown>)?.type
 
   if (eventType === 'call.session_started') {
+    const streamVideo = getStreamVideo()
     const event = payload as CallSessionStartedEvent
     const meetingId = event.call.custom?.meetingId
 
@@ -103,6 +105,7 @@ export async function POST (req: NextRequest) {
       instructions: existingAgent.instructions
     })
   } else if (eventType === 'call.session_participant_left') {
+    const streamVideo = getStreamVideo()
     const event = payload as CallSessionParticipantLeftEvent
     const meetingId = event.call_cid.split(':')[1]
 

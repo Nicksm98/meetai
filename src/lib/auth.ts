@@ -7,7 +7,32 @@ import * as schema from "@/db/schema";
 
 import { polarClient } from "./polar";
 
+const githubClientId = process.env.GITHUB_CLIENT_ID;
+const githubClientSecret = process.env.GITHUB_CLIENT_SECRET;
+const googleClientId = process.env.GOOGLE_CLIENT_ID;
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
+
+const socialProviders = {
+    ...(githubClientId && githubClientSecret
+        ? {
+              github: {
+                  clientId: githubClientId,
+                  clientSecret: githubClientSecret,
+              },
+          }
+        : {}),
+    ...(googleClientId && googleClientSecret
+        ? {
+              google: {
+                  clientId: googleClientId,
+                  clientSecret: googleClientSecret,
+              },
+          }
+        : {}),
+};
+
 export const auth = betterAuth({
+    baseURL: process.env.BETTER_AUTH_URL,
     plugins: [
         polar({
             client: polarClient,
@@ -21,16 +46,7 @@ export const auth = betterAuth({
             ],
         }),
     ],
-    socialProviders: {
-        github: { 
-            clientId: process.env.GITHUB_CLIENT_ID as string, 
-            clientSecret: process.env.GITHUB_CLIENT_SECRET as string, 
-        },
-        google: { 
-            clientId: process.env.GOOGLE_CLIENT_ID as string, 
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET as string, 
-        }, 
-    },
+    ...(Object.keys(socialProviders).length > 0 ? { socialProviders } : {}),
     emailAndPassword: {
         enabled: true,
     },
